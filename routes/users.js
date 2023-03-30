@@ -59,4 +59,19 @@ module.exports = (app) => {
 
     });
 
+
+    routeId.put((req, res) => {
+        db.update({ _id: req.params.id }, req.body, err => {
+
+            if (err) {
+                app.send(err, req, res, 400);
+            } else {
+                res.status(200).json(Object.assign(req.params, req.body));
+            }
+
+
+        });
+
+    });
+
 };
